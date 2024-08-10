@@ -7,31 +7,63 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+
+let questionsAsked = 0;
+
 const questionsArray = ["Please enter an animal: ", "Please enter a large building: ", "Please enter a playground game: "];
+const ideasArrayCreated = [];
 
 
 const numberOfQuestions = questionsArray.length;
 
-const randomNumber = () => { return Math.floor(Math.random()*numberOfQuestions)};
+const randomNumber = () => { return Math.floor(Math.random() * numberOfQuestions) };
+
+
+
+
+const askQuestion = (questionIndex, callback) => {
+
+
+    rl.question(questionsArray[questionIndex], (input) => {
+
+        if (input.trim() !== "") {
+
+            console.log(`You entered: ${input}`);
+
+   //         rl.close();
+            questionsAsked++;
+            ideasArrayCreated.push(input);
+            callback();
+            return input;
+        } else {
+            askQuestion(questionIndex, callback);
+        }
+
+    });
+
+
+};
+
 
 const newQuestion = () => {
 
-    randomGeneratedNumber = randomNumber();
-
+    if (questionsAsked < 3) {
+    const randomGeneratedNumber = randomNumber();
     console.log(randomGeneratedNumber);
+    askQuestion(randomGeneratedNumber, newQuestion);
 
+    } else {
+        rl.close();
+        generateStoryIdeas();
+    }
+};
 
-        rl.question(questionsArray[randomGeneratedNumber], (input) => {
-            const userInput = input;
-        
-            console.log(`You entered: ${userInput}`);
-        
-            rl.close();
-        
-        });
+const generateStoryIdeas = (ideasArray) => {
+    
+}
 
-    };
 
 
 
 newQuestion();
+
