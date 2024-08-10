@@ -1,0 +1,22 @@
+{
+  "name": "randommessagegenerator",
+  "version": "1.0.0",
+  "description": "Random Story Generator",
+  "main": "main.js",
+  "scripts": {
+    "test": "develop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n/a.git"
+  },
+  "keywords": [
+    "story"
+  ],
+  "author": "JDizzle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n/a/issues"
+  },
+  "homepage": "https://github.com/n/a#readme"
+}
