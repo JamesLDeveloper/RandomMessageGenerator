@@ -10,11 +10,12 @@ const rl = readline.createInterface({
 
 let questionsAsked = 0;
 
-const questionsArray = ["Please enter an animal: ", "Please enter a large building: ", "Please enter a playground game: "];
+const initialQuestionsArray = ["Please enter an animal: ", "Please enter a large building: ", "Please enter a playground game: "];
+const questionsArray = initialQuestionsArray;
 const ideasArrayCreated = [];
 
 
-const numberOfQuestions = questionsArray.length;
+let numberOfQuestions = questionsArray.length;
 
 const randomNumber = () => { return Math.floor(Math.random() * numberOfQuestions) };
 
@@ -33,6 +34,8 @@ const askQuestion = (questionIndex, callback) => {
    //         rl.close();
             questionsAsked++;
             ideasArrayCreated.push(input);
+            questionsArray.splice(questionIndex, 1);
+            numberOfQuestions--;
             callback();
             return input;
         } else {
@@ -54,12 +57,12 @@ const newQuestion = () => {
 
     } else {
         rl.close();
-        generateStoryIdeas();
+        generateStoryIdeas(ideasArrayCreated);
     }
 };
 
 const generateStoryIdeas = (ideasArray) => {
-    
+    console.log(`You could write a story about ${ideasArray[0]} + ${ideasArray[1]} + ${ideasArray[2]}`);
 }
 
 
